@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEPM Topics - Complete Theory</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #ffffff);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+    .question {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #2c3e50;
+    }
+    h2 {
+      font-size: 2em;
+      border-bottom: 2px solid #ecf0f1;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    h3 {
+      font-size: 1.6em;
+      color: #16a085;
+      margin-top: 20px;
+    }
+    p {
+      margin: 15px 0;
+    }
+    ul {
+      margin-left: 20px;
+    }
+    .diagram {
+      background: #f8f8f8;
+      padding: 15px;
+      border-left: 4px solid #16a085;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+    /* Navigation Styles */
+    nav {
+      background: #f4f4f4;
+      border-radius: 5px;
+      padding: 10px 0;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+    }
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #3498db;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Software Engineering &amp; Project Management</h1>
+    
+    <!-- Navigation -->
+    <nav>
+      <ul>
+        <li><a href="#q1">Development Models</a></li>
+        <li><a href="#q2">Mental Health Care Case</a></li>
+        <li><a href="#q3">Development Stages</a></li>
+        <li><a href="#q4">Documentation</a></li>
+        <li><a href="#q5">Ethics &amp; Requirements</a></li>
+        <li><a href="#q6">Quality of Software</a></li>
+      </ul>
+    </nav>
+
+    <!-- Question 1: Software Development Models -->
+    <section class="question" id="q1">
+      <h2>1. Software Development Models</h2>
+      
+      <!-- Waterfall Model -->
+      <article id="waterfall-model">
+        <h3>Waterfall Model</h3>
+        <div class="diagram">
++---------------------+  
+|  Requirements       |  
++---------------------+  
+         ↓            
++---------------------+  
+|  Design             |  
++---------------------+  
+         ↓            
++---------------------+  
+|  Implementation     |  
++---------------------+  
+         ↓            
++---------------------+  
+|  Testing            |  
++---------------------+  
+         ↓            
++---------------------+  
+|  Deployment         |  
++---------------------+  
+         ↓            
++---------------------+  
+|  Maintenance        |  
++---------------------+
+        </div>
+        <p><strong>Definition:</strong> A traditional SDLC model that follows a linear and sequential approach.</p>
+        <p><strong>Phases:</strong></p>
+        <ul>
+          <li><strong>Requirement Analysis:</strong> Gathering and documenting requirements.</li>
+          <li><strong>System Design:</strong> Creating software architecture and system design.</li>
+          <li><strong>Implementation:</strong> Writing the actual code.</li>
+          <li><strong>Testing:</strong> Verifying that the software meets the requirements.</li>
+          <li><strong>Deployment:</strong> Delivering the software to end users.</li>
+          <li><strong>Maintenance:</strong> Fixing errors and making updates.</li>
+        </ul>
+        <p><strong>Advantages:</strong> Simple, structured, and well-documented.</p>
+        <p><strong>Disadvantages:</strong> No flexibility for changes; difficult to adapt to evolving requirements.</p>
+        <p><strong>Best Suited For:</strong> Small, well-defined projects with stable requirements.</p>
+      </article>
+
+      <!-- Incremental Model -->
+      <article id="incremental-model">
+        <h3>Incremental Model</h3>
+        <div class="diagram">
++--------+    +--------+    +--------+
+|  V1    | →  |  V2    | →  |  V3    |
+| (Core) |    |(+Feat1)|    |(+Feat2)|
++--------+    +--------+    +--------+
+        </div>
+        <p><strong>Definition:</strong> Development and delivery in small, manageable increments, with each iteration adding functionality.</p>
+        <p><strong>Phases:</strong></p>
+        <ul>
+          <li><strong>Requirements Analysis:</strong> For the entire system.</li>
+          <li><strong>Design &amp; Development:</strong> Each increment adds a feature.</li>
+          <li><strong>Testing:</strong> Each increment is tested separately.</li>
+          <li><strong>Deployment:</strong> Each version is released to users.</li>
+          <li><strong>Maintenance</strong></li>
+        </ul>
+        <p><strong>Advantages:</strong> Allows user feedback after each increment and reduces initial development time.</p>
+        <p><strong>Disadvantages:</strong> Requires proper planning and architecture.</p>
+        <p><strong>Best Suited For:</strong> Large systems needing continuous improvement.</p>
+      </article>
+
+      <!-- Boehm Spiral Model -->
+      <article id="boehm-spiral-model">
+        <h3>Boehm Spiral Model</h3>
+        <p><strong>Definition:</strong> A risk-driven model that combines iterative development with systematic risk assessment.</p>
+        <p><strong>Phases:</strong></p>
+        <ul>
+          <li><strong>Planning:</strong> Identifying objectives, alternatives, and constraints.</li>
+          <li><strong>Risk Analysis:</strong> Evaluating risks and creating mitigation plans.</li>
+          <li><strong>Engineering:</strong> Developing and testing the software.</li>
+          <li><strong>Evaluation:</strong> Reviewing the software with stakeholders.</li>
+        </ul>
+        <p><strong>Advantages:</strong> Flexible and effective for high-risk projects.</p>
+        <p><strong>Disadvantages:</strong> Expensive, complex, and time-consuming.</p>
+        <p><strong>Best Suited For:</strong> Large, complex, high-risk projects (e.g., military or aerospace).</p>
+      </article>
+    </section>
+
+    <!-- Question 2: Mental Health Care - Case Study -->
+    <section class="question" id="q2">
+      <h2>2. Mental Health Care - Case Study</h2>
+      <p><strong>Example:</strong> Mental Health Care Patient Management System (MHC-PMS)</p>
+      <p><strong>Purpose:</strong> To store and manage patient records for mental health care services.</p>
+      <p><strong>Users:</strong> Psychiatrists, psychologists, mental health nurses, and patients.</p>
+      <p><strong>Key Components:</strong></p>
+      <ul>
+        <li><strong>Central Database:</strong> Stores patient history, diagnoses, treatments, and prescriptions.</li>
+        <li><strong>Clinician Access Points:</strong> Allows doctors and nurses to update records.</li>
+        <li><strong>Monitoring System:</strong> Alerts clinicians for critical cases.</li>
+        <li><strong>Security and Privacy Controls:</strong> Ensures data confidentiality.</li>
+      </ul>
+      <h3>Requirements for MHC-PMS</h3>
+      <p><strong>Functional Requirements:</strong></p>
+      <ul>
+        <li>Patient record management</li>
+        <li>Appointment scheduling</li>
+        <li>Prescription tracking</li>
+        <li>Emergency alerts</li>
+      </ul>
+      <p><strong>Non-Functional Requirements:</strong></p>
+      <ul>
+        <li>Data security (encryption, access control)</li>
+        <li>High availability and reliability</li>
+        <li>Compliance with medical regulations</li>
+      </ul>
+      <h3>System Architecture Diagram</h3>
+      <div class="diagram">
+User Interface  →  Doctor/Nurse Login, Patient Portal  
+Application Layer  →  Record Management, Appointment Scheduling, Alerts  
+Database  →  Patient History, Medications, Reports
+      </div>
+    </section>
+
+    <!-- Question 3: Four Stages of Software Development -->
+    <section class="question" id="q3">
+      <h2>3. Four Stages of Software Development</h2>
+      <article>
+        <h3>Software Specification</h3>
+        <p>Defining system requirements (functional &amp; non-functional) using requirement documents, diagrams, and models.</p>
+      </article>
+      <article>
+        <h3>Software Development</h3>
+        <p>Designing the architecture and writing the code, including UI/UX design and integrations.</p>
+      </article>
+      <article>
+        <h3>Software Validation</h3>
+        <p>Conducting various tests (unit, integration, system, user acceptance) to ensure the software meets requirements.</p>
+      </article>
+      <article>
+        <h3>Software Evolution</h3>
+        <p>Providing ongoing updates, bug fixes, and feature enhancements to adapt to new business needs and technologies.</p>
+      </article>
+    </section>
+
+    <!-- Question 4: Structure of Documentation -->
+    <section class="question" id="q4">
+      <h2>4. Structure of Documentation</h2>
+      <ul>
+        <li><strong>User Documentation:</strong> Manuals, installation guides, FAQs.</li>
+        <li><strong>Technical Documentation:</strong> System architecture, APIs, data flow diagrams, design documents.</li>
+        <li><strong>Process Documentation:</strong> Project plans, schedules, test plans, requirements reports.</li>
+        <li><strong>Source Code Documentation:</strong> Inline comments, function descriptions, README files.</li>
+      </ul>
+    </section>
+
+    <!-- Question 5: Requirement Analysis & Code of Ethics -->
+    <section class="question" id="q5">
+      <h2>5. Requirement Analysis &amp; Code of Ethics</h2>
+      <h3>Requirement Analysis</h3>
+      <p>Identifying user needs and constraints—including functional, non-functional, domain-specific, and regulatory requirements—using techniques such as interviews, surveys, prototyping, observation, and document analysis.</p>
+      <h3>Software Engineering Code of Ethics (ACM/IEEE)</h3>
+      <ul>
+        <li><strong>Public Interest:</strong> Prioritize user safety and well-being.</li>
+        <li><strong>Client &amp; Employer:</strong> Act in their best interests.</li>
+        <li><strong>Product Quality:</strong> Ensure high standards in software performance and reliability.</li>
+        <li><strong>Professional Judgment:</strong> Make unbiased, ethical decisions.</li>
+        <li><strong>Management Responsibility:</strong> Lead teams ethically.</li>
+        <li><strong>Professionalism:</strong> Uphold integrity and competence.</li>
+        <li><strong>Colleagues:</strong> Be supportive and fair.</li>
+        <li><strong>Self-Improvement:</strong> Continue learning and staying updated.</li>
+      </ul>
+    </section>
+
+    <!-- Question 6: Quality of Good Software -->
+    <section class="question" id="q6">
+      <h2>6. Quality of Good Software</h2>
+      <ul>
+        <li><strong>Maintainability:</strong> Easy to modify, well-documented, and modular design.</li>
+        <li><strong>Reliability:</strong> Performs correctly under varied conditions with robust error handling.</li>
+        <li><strong>Efficiency:</strong> Optimized resource usage (CPU, memory, storage) with fast response times.</li>
+        <li><strong>Usability:</strong> Intuitive, user-friendly interface with clear navigation and accessibility.</li>
+        <li><strong>Portability:</strong> Runs on various platforms with minimal changes.</li>
+        <li><strong>Security:</strong> Protects against threats via authentication, encryption, and access control.</li>
+      </ul>
+    </section>
+    
+  </div>
+</body>
+</html>

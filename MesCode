@@ -1,0 +1,52 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+    num DW 3      ; Number whose factorial is to be calculated
+    fact DW 1     ; Store the factorial result
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX    ; Initialize data segment
+
+    MOV CX, num   ; Load the number into CX
+    MOV AX, 1     ; Start with AX = 1 (Factorial Calculation)
+
+FACTORIAL_LOOP:
+    MUL CX        ; Multiply AX by CX
+    DEC CX        ; Decrement CX by 1
+    JNZ FACTORIAL_LOOP  ; Jump back if CX is not zero
+
+    MOV fact, AX  ; Store the factorial result
+
+    MOV AH, 4CH   ; Exit program
+    INT 21H
+
+MAIN ENDP
+END MAIN
+.MODEL SMALL
+.STACK 100H
+.DATA
+    num DW 3      ; Number whose factorial is to be calculated
+    fact DW 1     ; Store the factorial result
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX    ; Initialize data segment
+
+    MOV CX, num   ; Load the number into CX
+    MOV AX, 1     ; Start with AX = 1 (Factorial Calculation)
+
+FACTORIAL_LOOP:
+    MUL CX        ; Multiply AX by CX
+    DEC CX        ; Decrement CX by 1
+    JNZ FACTORIAL_LOOP  ; Jump back if CX is not zero
+
+    MOV fact, AX  ; Store the factorial result
+
+    MOV AH, 4CH   ; Exit program
+    INT 21H
+
+MAIN ENDP
+END MAIN

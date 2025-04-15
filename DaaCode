@@ -1,598 +1,961 @@
-Part A
+Part A 
+Design, Develop and Implement C Programs to solve Bubble sorting using Brute Force technique.
+ #include 
 
-Bubble Sort using Brute Force Technique
-
-c
-Run
-Copy code
-#include <stdio.h>
-
+// Function to perform Bubble Sort using Brute Force
 void bubbleSort(int arr[], int n) {
-    for (int i = 0; i < n-1; i++) {
-        for (int j = 0; j < n-i-1; j++) {
-            if (arr[j] > arr[j+1]) {
-                int temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
-    }
+ int i, j, temp;
+ 
+ // Traverse through all array elements
+ for (i = 0; i < n-1; i++) {
+ // Last i elements are already in place
+ for (j = 0; j < n-i-1; j++) {
+ // Swap if the element is greater than the next
+ if (arr[j] > arr[j+1]) {
+ // Brute force swap
+ temp = arr[j];
+ arr[j] = arr[j+1];
+ arr[j+1] = temp; 
+ }
+ }
+ }
 }
 
+// Function to print array
+void printArray(int arr[], int n) {
+ int i;
+ for (i=0; i < n; i++)
+ printf("%d ", arr[i]);
+ printf("\n");
+}
+
+// Main function
 int main() {
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    int arr[n];
-    printf("Enter %d elements:\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
-    bubbleSort(arr, n);
-    printf("Sorted array: \n");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    return 0;
-}
-Selection Sort using Brute Force Technique
+ int arr[100], n, i;
 
-c
-Run
-Copy code
-#include <stdio.h>
+ printf("Enter the number of elements: ");
+ scanf("%d", &n);
+
+ printf("Enter %d elements:\n", n);
+ for(i = 0; i < n; i++) {
+ scanf("%d", &arr[i]);
+ }
+
+ printf("Original array:\n");
+ printArray(arr, n);
+
+ bubbleSort(arr, n);
+
+ printf("Sorted array using Bubble Sort (Brute Force):\n");
+ printArray(arr, n);
+
+ return 0;
+}
+
+
+OUTPUT:
+Enter size: 4
+Enter elements: 54 22 341 1
+Sorted array: 1 22 54 341
+
+ 2. Design, Develop and Implement C Programs to solve selection sorting using Brute Force technique. 
+ #include 
 
 void selectionSort(int arr[], int n) {
-    for (int i = 0; i < n-1; i++) {
-        int min_idx = i;
-        for (int j = i+1; j < n; j++)
-            if (arr[j] < arr[min_idx])
-                min_idx = j;
-        int temp = arr[min_idx];
-        arr[min_idx] = arr[i];
-        arr[i] = temp;
-    }
+ int i, j, minIndex, temp;
+ for (i = 0; i < n - 1; i++) {
+ minIndex = i;
+ for (j = i + 1; j < n; j++) {
+ if (arr[j] < arr[minIndex]) {
+ minIndex = j;
+ }
+ }
+ // Swap arr[minIndex] and arr[i]
+ temp = arr[minIndex];
+ arr[minIndex] = arr[i];
+ arr[i] = temp;
+ }
+}
+
+void printArray(int arr[], int size) {
+ int i;
+ for (i = 0; i < size; i++) {
+ printf("%d ", arr[i]);
+ }
+ printf("\n");
 }
 
 int main() {
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    int arr[n];
-    printf("Enter %d elements:\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
-    selectionSort(arr, n);
-    printf("Sorted array: \n");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    return 0;
+ int n, i;
+ printf("Enter number of elements: ");
+ scanf("%d", &n);
+
+ int arr[n];
+ printf("Enter %d integers:\n", n);
+ for (i = 0; i < n; i++) {
+ scanf("%d", &arr[i]);
+ }
+
+ printf("Unsorted array: ");
+ printArray(arr, n);
+
+ selectionSort(arr, n);
+
+ printf("Sorted array: ");
+ printArray(arr, n);
+
+ return 0;
 }
-String Matching using Brute Force Technique
+OUTPUT:
+Enter size: 4
+Enter elements: 54 22 341 1
+Sorted array: 1 22 54 341
 
-c
-Run
-Copy code
-#include <stdio.h>
-#include <string.h>
-
-void bruteForceSearch(char *text, char *pattern) {
-    int n = strlen(text);
-    int m = strlen(pattern);
-    for (int i = 0; i <= n - m; i++) {
-        int j;
-        for (j = 0; j < m; j++)
-            if (text[i + j] != pattern[j])
-                break;
-        if (j == m)
-            printf("Pattern found at index %d\n", i);
-    }
-}
-
-int main() {
-    char text[100], pattern[100];
-    printf("Enter text: ");
-    scanf("%s", text);
-    printf("Enter pattern: ");
-    scanf("%s", pattern);
-    bruteForceSearch(text, pattern);
-    return 0;
-}
-Binary Search using Divide and Conquer Technique
-
-c
-Run
-Copy code
-#include <stdio.h>
-
-int binarySearch(int arr[], int left, int right, int x) {
-    if (right >= left) {
-        int mid = left + (right - left) / 2;
-        if (arr[mid] == x)
-            return mid;
-        if (arr[mid] > x)
-            return binarySearch(arr, left, mid - 1, x);
-        return binarySearch(arr, mid + 1, right, x);
-    }
-    return -1;
+3. Design, Develop and Implement C Programs to solve String Matching using Brute Force technique. 
+#include 
+#include 
+int bruteForceMatch(char text[], char pattern[]) {
+ int n = strlen(text);
+ int m = strlen(pattern);
+ for (int i = 0; i <= n - m; i++) {
+ int j;
+ for (j = 0; j < m; j++) {
+ if (text[i + j] != pattern[j])
+ break;
+ }
+ if (j == m) {
+ return i;
+ }
+ }
+ return -1;
 }
 
 int main() {
-    int n, x;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    int arr[n];
-    printf("Enter %d sorted elements:\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
-    printf("Enter element to search: ");
-    scanf("%d", &x);
-    int result = binarySearch(arr, 0, n - 1, x);
-    (result == -1) ? printf("Element not present in array\n") : printf("Element found at index %d\n", result);
-    return 0;
+ char text[100], pattern[100];
+ printf("Enter the text: ");
+ scanf("%s", text);
+
+ printf("Enter the pattern to search: ");
+ scanf("%s", pattern);
+
+ int position = bruteForceMatch(text, pattern);
+
+ if (position != -1)
+ printf("Pattern found at index %d.\n", position);
+ else
+ printf("Pattern not found.\n");
+
+ return 0;
 }
-Insertion Sort using Decrease and Conquer Technique
+OUTPUT:
+Enter text: QWERTYUIOP
+Enter pattern: TYU
+Found at index 4
 
-c
-Run
-Copy code
-#include <stdio.h>
+4. Design, Develop and Implement C Programs to solve Binary search using Divide and Conquer technique.
+ #include 
 
+// Function to perform binary search using divide and conquer
+int binarySearch(int arr[], int low, int high, int key) {
+ if (low <= high) {
+ int mid = (low + high) / 2;
+
+ if (arr[mid] == key)
+ return mid; // Element found
+
+ else if (key < arr[mid])
+ return binarySearch(arr, low, mid - 1, key); // Search left sub-array
+
+ else
+ return binarySearch(arr, mid + 1, high, key); // Search right sub-array
+ }
+
+ return -1; // Element not found
+}
+
+int main() {
+ int arr[100], n, key, result;
+
+ // Input array size
+ printf("Enter the number of elements (sorted): ");
+ scanf("%d", &n);
+
+ // Input array elements (assumed sorted in ascending order)
+ printf("Enter %d sorted elements:\n", n);
+ for (int i = 0; i < n; i++)
+ scanf("%d", &arr[i]);
+
+ // Input element to search
+ printf("Enter the element to search: ");
+ scanf("%d", &key);
+
+ // Perform binary search
+ result = binarySearch(arr, 0, n - 1, key);
+
+ // Output the result
+ if (result != -1)
+ printf("Element found at index %d.\n", result);
+ else
+ printf("Element not found.\n");
+
+ return 0;
+}
+OUTPUT 1:
+Enter Size: 4
+Enter sorted elements: 2 4 6 8
+Enter the key to search: 6
+Key found at index: 2
+Time taken: 0.000009 seconds
+
+OUTPUT 2:
+Enter Size: 4
+Enter sorted elements: 2 4 6 8
+Enter the key to search: 5
+Key not found
+Time taken: 0.000008 seconds
+
+ 5. Design, Develop and Implement C Programs to solve Insertion sort using Decrease and Conquer technique. 
+#include 
+
+// Function to perform Insertion Sort
 void insertionSort(int arr[], int n) {
-    for (int i = 1; i < n; i++) {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = key;
-    }
+ for (int i = 1; i < n; i++) {
+ int key = arr[i]; // Current element to be placed
+ int j = i - 1;
+
+ // Move elements greater than key to one position ahead
+ while (j >= 0 && arr[j] > key) {
+ arr[j + 1] = arr[j];
+ j--;
+ }
+
+ arr[j + 1] = key; // Insert the key at correct position
+ }
+}
+
+// Main function
+int main() {
+ int arr[100], n;
+
+ // Input array size
+ printf("Enter number of elements: ");
+ scanf("%d", &n);
+
+ // Input array elements
+ printf("Enter %d elements:\n", n);
+ for (int i = 0; i < n; i++) {
+ scanf("%d", &arr[i]);
+ }
+
+ // Call insertion sort
+ insertionSort(arr, n);
+
+ // Output the sorted array
+ printf("Sorted array using Insertion Sort:\n");
+ for (int i = 0; i < n; i++) {
+ printf("%d ", arr[i]);
+ }
+ printf("\n");
+
+ return 0;
+}
+OUTPUT:
+Enter size of array: 4
+Enter the elements: 2 4 6 8
+Sorted array: 2 4 6 8 
+6. Design, Develop and Implement C Programs to solve Floyds method using Dynamic Programming.
+#include 
+#include 
+#include 
+
+#define INF 999 // Large enough to represent "infinity"
+
+int min(int a, int b) {
+ return (a < b) ? a : b;
+}
+
+void Floyd\_AllPair(int A[10][10], int nv, int D[10][10]) {
+ int i, j, k;
+
+ // Initialize D = A
+ for(i = 0; i < nv; i++)
+ for(j = 0; j < nv; j++)
+ D[i][j] = A[i][j];
+
+ // Floyd-Warshall algorithm
+ for(k = 0; k < nv; k++)
+ for(i = 0; i < nv; i++)
+ for(j = 0; j < nv; j++) {
+ if (D[i][k] != INF && D[k][j] != INF)
+ D[i][j] = min(D[i][j], D[i][k] + D[k][j]);
+ }
+
+ // Output shortest paths
+ printf("\nThe All Pairs Shortest Path Matrix is:\n");
+ for(i = 0; i < nv; i++) {
+ for(j = 0; j < nv; j++) {
+ if(D[i][j] == INF)
+ printf("INF\t");
+ else
+ printf("%d\t", D[i][j]);
+ }
+ printf("\n");
+ }
 }
 
 int main() {
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    int arr[n];
-    printf("Enter %d elements:\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
-    insertionSort(arr, n);
-    printf("Sorted array: \n");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    return 0;
+ int A[10][10], D[10][10];
+ int nv, ne, v1, v2, w;
+ int i, j;
+
+ printf("Enter number of vertices: ");
+ scanf("%d", &nv);
+
+ printf("Enter number of edges: ");
+ scanf("%d", â‰ );
+
+ // Initialize adjacency matrix
+ for(i = 0; i < nv; i++) {
+ for(j = 0; j < nv; j++) {
+ if(i == j)
+ A[i][j] = 0;
+ else
+ A[i][j] = INF;
+ }
+ }
+
+ // Input edges
+ printf("Enter the edges with distances (source destination weight) with vertex from 0 :\n");
+ for(i = 0; i < ne; i++) {
+ printf("Edge %d: ", i + 1);
+ scanf("%d%d%d", &v1, &v2, &w);
+ 
+ A[v1][v2] = w; // Directed edge
+ }
+
+ printf("\nThe Adjacency Matrix is:\n");
+ for(i = 0; i < nv; i++) {
+ for(j = 0; j < nv; j++) {
+ if(A[i][j] == INF)
+ printf("INF\t");
+ else
+ printf("%d\t", A[i][j]);
+ }
+ printf("\n");
+ }
+
+ Floyd\_AllPair(A, nv, D);
+
+ return 0;
 }
-Floyd's Method using Dynamic Programming
+OUTPUT:
 
-c
-Run
-Copy code
-#include <stdio.h>
-#define V 4
+Enter the number of vertices:3
+Enter the number of edges:3
+Enter the start end vertice of edge1 & weight
+1 2 5
+Enter the start end vertice of edge2 & weight
+2 3 1
+Enter the start end vertice of edge3 & weight
+3 1 2
+Matrix of input data:
+999 5 999
+999 999 1
+2 999 999
 
-void floydWarshall(int graph[][V]) {
-    int dist[V][V], i, j, k;
-    for (i = 0; i < V; i++)
-        for (j = 0; j < V; j++)
-            dist[i][j] = graph[i][j];
+Shortest path matrix:
+0 5 6
+3 0 1
+2 7 0
 
-    for (k = 0; k < V; k++) {
-        for (i = 0; i < V; i++) {
-            for (j = 0; j < V; j++) {
-                if (dist[i][k] + dist[k][j] < dist[i][j])
-                    dist[i][j] = dist[i][k] + dist[k][j];
-            }
-        }
-    }
+ 7. Design, Develop and Implement C Programs to solve Warshallâ€™s method using Dynamic Programming.
+#include 
 
-    printf("Shortest distances between every pair of vertices:\n");
-    for (i = 0; i < V; i++) {
-        for (j = 0; j < V; j++) {
-            if (dist[i][j] == 99999)
-                printf("INF ");
-            else
-                printf("%d ", dist[i][j]);
-        }
-        printf("\n");
-    }
-}
-c
-Run
-Copy code
-  int main() {
-      int graph[V][V];
-      printf("Enter the adjacency matrix for the graph (use 99999 for infinity):\n");
-      for (int i = 0; i < V; i++) {
-          for (int j = 0; j < V; j++) {
-              scanf("%d", &graph[i][j]);
-          }
-      }
-      floydWarshall(graph);
-      return 0;
-  }
-Warshall’s Method using Dynamic Programming
-c
-Run
-Copy code
-#include <stdio.h>
-#define V 4
+#define MAX 10
 
-void warshall(int graph[][V]) {
-    int reach[V][V], i, j, k;
-    for (i = 0; i < V; i++)
-        for (j = 0; j < V; j++)
-            reach[i][j] = graph[i][j];
+void Warshall\_Transitive(int A[MAX][MAX], int nv, int R[MAX][MAX]) {
+ int i, j, k;
 
-    for (k = 0; k < V; k++) {
-        for (i = 0; i < V; i++) {
-            for (j = 0; j < V; j++) {
-                reach[i][j] = reach[i][j] || (reach[i][k] && reach[k][j]);
-            }
-        }
-    }
+ // Initially R = A
+ for (i = 0; i < nv; i++)
+ for (j = 0; j < nv; j++)
+ R[i][j] = A[i][j];
 
-    printf("Transitive closure of the given graph:\n");
-    for (i = 0; i < V; i++) {
-        for (j = 0; j < V; j++) {
-            printf("%d ", reach[i][j]);
-        }
-        printf("\n");
-    }
+ // Applying Warshall's Algorithm
+ for (k = 0; k < nv; k++)
+ for (i = 0; i < nv; i++)
+ for (j = 0; j < nv; j++)
+ R[i][j] = R[i][j] || (R[i][k] && R[k][j]);
 }
 
 int main() {
-    int graph[V][V];
-    printf("Enter the adjacency matrix for the graph (use 0 for no edge):\n");
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            scanf("%d", &graph[i][j]);
-        }
-    }
-    warshall(graph);
-    return 0;
+ int A[MAX][MAX], R[MAX][MAX]; // A - adjacency matrix, R - transitive closure
+ int nv, ne, v1, v2;
+ int i, j;
+
+ printf("Enter the number of vertices (max %d): ", MAX);
+ scanf("%d", &nv);
+
+
+ printf("Enter the number of edges: ");
+ scanf("%d", â‰ );
+
+ // Initialize adjacency matrix
+ for (i = 0; i < nv; i++)
+ for (j = 0; j < nv; j++)
+ A[i][j] = 0;
+
+ printf("Enter the edges (start\_vertex end\_vertex) with vertices from 0 to %d:\n", nv - 1);
+ for (i = 0; i < ne; i++) {
+ printf("Edge %d: ", i + 1);
+ scanf("%d%d", &v1, &v2);
+ A[v1][v2] = 1; // Directed edge
+ }
+
+ Warshall\_Transitive(A, nv, R);
+
+ printf("\nThe Adjacency Matrix of the given digraph is:\n");
+ for (i = 0; i < nv; i++) {
+ for (j = 0; j < nv; j++)
+ printf("%d\t", A[i][j]);
+ printf("\n");
+ }
+
+ printf("\nThe Transitive Closure of the given digraph is:\n");
+ for (i = 0; i < nv; i++) {
+ for (j = 0; j < nv; j++)
+ printf("%d\t", R[i][j]);
+ printf("\n");
+ }
+
+ return 0;
 }
-Part B
+OUTPUT 1:
 
-Merge Sort using Divide and Conquer Technique
+Enter the number of vertices: 3
+Enter the adjacency matrix :
+0 1 0
+0 0 1
+1 0 0
+The transitive closure is:
+1 1 1
+1 1 1
+1 1 1
+Time taken: 0.000022 seconds
 
-c
-Run
-Copy code
-#include <stdio.h>
+OUTPUT 2:
 
-void merge(int arr[], int l, int m, int r) {
-    int i, j, k;
-    int n1 = m - l + 1;
-    int n2 = r - m;
-    int L[n1], R[n2];
+Enter the number of vertices: 3
+Enter the adjacency matrix :
+0 1 0
+0 0 0
+1 0 0
+The transitive closure is:
+0 1 0
+0 0 0
+1 1 0
+Time taken: 0.000012 seconds
 
-    for (i = 0; i < n1; i++)
-        L[i] = arr[l + i];
-    for (j = 0; j < n2; j++)
-        R[j] = arr[m + 1 + j];
 
-    i = 0; j = 0; k = l;
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
-            arr[k] = L[i];
-            i++;
-        } else {
-            arr[k] = R[j];
-            j++;
-        }
-        k++;
-    }
 
-    while (i < n1) {
-        arr[k] = L[i];
-        i++;
-        k++;
-    }
 
-    while (j < n2) {
-        arr[k] = R[j];
-        j++;
-        k++;
-    }
-}
 
-void mergeSort(int arr[], int l, int r) {
-    if (l < r) {
-        int m = l + (r - l) / 2;
-        mergeSort(arr, l, m);
-        mergeSort(arr, m + 1, r);
-        merge(arr, l, m, r);
-    }
-}
 
-int main() {
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    int arr[n];
-    printf("Enter %d elements:\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
-    mergeSort(arr, 0, n - 1);
-    printf("Sorted array: \n");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    return 0;
-}
-Quick Sort using Divide and Conquer Technique
 
-c
-Run
-Copy code
-#include <stdio.h>
 
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
-    int i = (low - 1);
-    for (int j = low; j < high; j++) {
-        if (arr[j] < pivot) {
-            i++;
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-    }
-    int temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
-    return (i + 1);
-}
 
-void quickSort(int arr[], int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
+
+
+
+
+
+
+
+
+
+
+
+Part B 
+Design, Develop and Implement C Programs to solve Merge sort using Divide and Conquer technique.
+ #include 
+
+void Merge(int b[], int p, int c[], int q, int a[]) {
+ int i = 0, j = 0, k = 0;
+ while (i < p && j < q) {
+ if (b[i] <= c[j]) {
+ a[k++] = b[i++];
+ } else {
+ a[k++] = c[j++];
+ }
+ }
+ while (i < p) {
+ a[k++] = b[i++];
+ }
+ while (j < q) {
+ a[k++] = c[j++];
+ }
 }
 
-int main() {
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    int arr[n];
-    printf("Enter %d elements:\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
-    quickSort(arr, 0, n - 1);
-    printf("Sorted array: \n");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    return 0;
-}
-Depth First Search (DFS) using Decrease and Conquer Technique
+void MergeSort(int a[], int n) {
+ if (n > 1) {
+ int mid = n / 2;
+ int b[mid], c[n - mid];
+ for (int i = 0; i < mid; i++)
+ b[i] = a[i];
+ for (int i = mid, j = 0; i < n; i++, j++)
+ c[j] = a[i];
 
-c
-Run
-Copy code
-#include <stdio.h>
-#include <stdlib.h>
-
-void DFSUtil(int v, int visited[], int graph[][4], int V) {
-    visited[v] = 1;
-    printf("%d ", v);
-    for (int i = 0; i < V; i++) {
-        if (graph[v][i] == 1 && !visited[i]) {
-            DFSUtil(i, visited, graph, V);
-        }
-    }
-}
-
-void DFS(int graph[][4], int V) {
-    int visited[V];
-    for (int i = 0; i < V; i++)
-        visited[i] = 0;
-    for (int i = 0; i < V; i++) {
-        if (!visited[i]) {
-            DFSUtil(i, visited, graph, V);
-        }
-    }
+ MergeSort(b, mid);
+ MergeSort(c, n - mid);
+ Merge(b, mid, c, n - mid, a);
+ }
 }
 
 int main() {
-    int graph[4][4];
-    printf("Enter the adjacency matrix for the graph (0 for no edge, 1 for edge):\n");
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            scanf("%d", &graph[i][j]);
-        }
-    }
-    printf("Depth First Traversal starting from vertex 0:\n");
-    DFS(graph, 4);
-    return 0;
-}
-Breadth First Search (BFS) using Decrease and Conquer Technique
+ int a[100], n;
+ printf("Enter number of elements: ");
+ scanf("%d", &n);
 
-c
-Run
-Copy code
-#include <stdio.h>
-#include <stdlib.h>
+ printf("Enter elements one by one:\n");
+ for (int i = 0; i < n; i++)
+ scanf("%d", &a[i]);
 
-void BFS(int start, int graph[][4], int V) {
-    int visited[V];
-    for (int i = 0; i < V; i++)
-        visited[i] = 0;
+ MergeSort(a, n);
 
-    int queue[V], front = -1, rear = -1;
-    visited[start] = 1;
-    queue[++rear] = start;
+ printf("The numbers in ascending order are:\n");
+ for (int i = 0; i < n; i++)
+ printf("%d\n", a[i]);
 
-    while (front < rear) {
-        int current = queue[++front];
-        printf("%d ", current);
-        for (int i = 0; i < V; i++) {
-            if (graph[current][i] == 1 && !visited[i]) {
-                visited[i] = 1;
-                queue[++rear] = i;
-            }
-        }
-    }
+ return 0;
 }
 
-int main() {
-    int graph[4][4];
-    printf("Enter the adjacency matrix for the graph (0 for no edge, 1 for edge):\n");
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            scanf("%d", &graph[i][j]);
-        }
-    }
-    printf("Breadth First Traversal starting from vertex 0:\n");
-    BFS(0, graph, 4);
-    return 0;
+OUTPUT:
+Enter the size of array: 4
+Enter the elements: 1 5 2 3
+Sorted array :
+1 2 3 5
+
+ 2. Design, Develop and Implement C Programs to solve Quick sort using Divide and Conquer technique. 
+#include 
+
+int a[100]; // Increased size for safety
+
+int partition(int l, int r) {
+ int p = a[l];
+ int i = l + 1;
+ int j = r;
+ int temp;
+
+ while (i <= j) {
+ while (i <= r && a[i] <= p) i++;
+ while (a[j] > p) j--;
+
+ if (i < j) {
+ temp = a[i];
+ a[i] = a[j];
+ a[j] = temp;
+ }
+ }
+
+ // Swap pivot with a[j]
+ temp = a[l];
+ a[l] = a[j];
+ a[j] = temp;
+
+ return j;
 }
-Topological Sorting using Decrease and Conquer Technique
 
-c
-Run
-Copy code
-#include <stdio.h>
-#include <stdlib.h>
-
-void topologicalSortUtil(int v, int visited[], int stack[], int *top, int graph[][4], int V) {
-    visited[v] = 1;
-    for (int i = 0; i < V; i++) {
-        if (graph[v][i] == 1 && !visited[i]) {
-            topologicalSortUtil(i, visited, stack, top, graph, V);
-        }
-    }
-    stack[(*top)++] = v;
-}
-
-void topologicalSort(int graph[][4], int V) {
-    int visited[V];
-    int stack[V];
-    int top = 0;
-
-    for (int i = 0; i < V; i++)
-        visited[i] = 0;
-
-    for (int i = 0; i < V; i++) {
-        if (!visited[i]) {
-            topologicalSortUtil(i, visited, stack, &top, graph, V);
-        }
-    }
-
-    printf("Topological Sort: ");
-    for (int i = top - 1; i >= 0; i--) {
-        printf("%d ", stack[i]);
-    }
-    printf("\n");
+void QuickSort(int l, int r) {
+ if (l < r) {
+ int s = partition(l, r);
+ QuickSort(l, s - 1);
+ QuickSort(s + 1, r);
+ }
 }
 
 int main() {
-    int graph[4][4];
-    printf("Enter the adjacency matrix for the directed graph (0 for no edge, 1 for edge):\n");
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            scanf("%d", &graph[i][j]);
-        }
-    }
-    topologicalSort(graph, 4);
-    return 0;
-}
-Horspool’s Algorithm using Space and Time Tradeoff Technique
+ int n;
+ printf("Enter number of elements: ");
+ scanf("%d", &n);
 
-c
-Run
-Copy code
-#include <stdio.h>
-#include <string.h>
+ printf("Enter elements one by one:\n");
+ for (int i = 0; i < n; i++)
+ scanf("%d", &a[i]);
 
-void horspool(char *text, char *pattern) {
-    int m = strlen(pattern);
-    int n = strlen(text);
-    int shift[256];
-    for (int i = 0; i < 256; i++)
-        shift[i] = m; // Default shift value
+ QuickSort(0, n - 1);
 
-    for (int i = 0; i < m - 1; i++)
-        shift[(unsigned char)pattern[i]] = m - 1 - i;
+ printf("The numbers in ascending order are:\n");
+ for (int i = 0; i < n; i++)
+ printf("%d\n", a[i]);
 
-    int i = 0;
-    while (i <= n - m) {
-        int j = m - 1;
-        while (j >= 0 && pattern[j] == text[i + j])
-            j--;
-        if (j < 0) {
-            printf("Pattern found at index %d\n", i);
-            i += shift[(unsigned char)text[i + m - 1]];
-        } else {
-            i += shift[(unsigned char)text[i + j]];
-        }
-    }
+ return 0;
 }
 
-int main() {
-    char text[100], pattern[100];
-    printf("Enter text: ");
-    scanf("%s", text);
-    printf("Enter pattern: ");
-    scanf("%s", pattern);
-    horspool(text, pattern);
-    return 0;
-}
-Heap Sorting using Transform and Conquer Technique
+OUTPUT:
+Enter the number of elements: 4
+Enter the numbers: 35 12 64 27
+fixed position is 2
+fixed position is 1
+12 27 35 64
 
-c
-Run
-Copy code
-#include <stdio.h>
 
-void heapify(int arr[], int n, int i) {
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
 
-    if (left < n && arr[left] > arr[largest])
-        largest = left;
 
-    if (right < n && arr[right] > arr[largest])
-        largest = right;
 
-    if (largest != i) {
-        int temp = arr[i];
-        arr[i] = arr[largest];
-        arr[largest] = temp;
-        heapify(arr, n, largest);
-    }
+3. Design, Develop and Implement C Programs to solve Depth First Search (DFS) using Decrease and Conquer technique. 
+ #include
+
+int count;
+
+void dfs(int v, int vis[], int adj[][20], int n) {
+ int i;
+ count++;
+ vis[v] = count;
+ printf("%d: Vertex %d\n", count, v);
+ for(i = 1; i <= n; i++) {
+ if(adj[v][i] == 1 && vis[i] == 0)
+ dfs(i, vis, adj, n);
+ }
 }
 
-void heapSort(int arr[], int n) {
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify(arr, n, i);
-    for (int i = n - 1; i > 0; i--) {
-        int temp = arr[0];
-        arr[0] = arr[i];
-        arr[i] = temp;
-        heapify(arr, i, 0);
-    }
+void DFS(int adj[][20], int n, int vis[]) {
+ int i;
+ count = 0;
+ for(i = 1; i <= n; i++) {
+ if(vis[i] == 0)
+ dfs(i, vis, adj, n);
+ }
 }
 
 int main() {
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    int arr[n];
-    printf("Enter %d elements:\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
-    heapSort(arr, n);
-    printf("Sorted array: \n");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    return 0;
+ int i, j, adj[20][20], vis[20] = {0}, n;
+
+ printf("Enter number of nodes:\n");
+ scanf("%d", &n);
+ printf("Enter adjacency matrix:\n");
+ for(i = 1; i <= n; i++)
+ for(j = 1; j <= n; j++)
+ scanf("%d", &adj[i][j]);
+
+ printf("DFS traversal:\n");
+ DFS(adj, n, vis);
+
+ int connected = 1;
+ for(i = 1; i <= n; i++) {
+ if(vis[i] == 0) {
+ connected = 0;
+ break;
+ }
+ }
+
+ if(connected)
+ printf("Connected\n");
+ else
+ printf("Not connected\n");
+
+ return 0;
 }
+4. Design, Develop and Implement C Programs to solve Breadth First Search (BFS) using Decrease and Conquer technique. 
+#include 
+#include 
+#define SIZE 25
+
+int count = 0; // Added global count variable
+
+struct QUEUE {
+ int items[SIZE];
+ int front, rear;
+};
+
+void insertqueue(struct QUEUE *q, int value);
+int removequeue(struct QUEUE *q);
+int isqfull(struct QUEUE *q);
+int isqempty(struct QUEUE *q);
+void bfs(int v, int a[][20], int n, int visit[]);
+void BFS(int n, int a[][20], int visit[]);
+
+void insertqueue(struct QUEUE *q, int value) {
+ if (!isqfull(q)) {
+ q->rear++;
+ q->items[q->rear] = value;
+ }
+}
+
+int removequeue(struct QUEUE *q) {
+ int value;
+ if (!isqempty(q)) {
+ value = q->items[q->front];
+ q->front++;
+ return value;
+ }
+ return -1;
+}
+
+int isqfull(struct QUEUE *q) {
+ return q->rear == SIZE - 1;
+}
+
+int isqempty(struct QUEUE *q) {
+ return q->front > q->rear;
+}
+
+void BFS(int n, int a[][20], int visit[]) {
+ for (int i = 1; i <= n; i++) {
+ if (visit[i] == 0) {
+ bfs(i, a, n, visit);
+ }
+ }
+}
+
+void bfs(int v, int a[][20], int n, int visit[]) {
+ struct QUEUE q;
+ q.front = 0;
+ q.rear = -1;
+ visit[v] = ++count;
+ insertqueue(&q, v);
+
+ while (!isqempty(&q)) {
+ int ele = removequeue(&q);
+ printf("\nVertex : %d\n", ele);
+ for (int w = 1; w <= n; w++) {
+ if (a[ele][w] == 1 && visit[w] == 0) {
+ visit[w] = ++count;
+ insertqueue(&q, w);
+ }
+ }
+ }
+}
+
+int main() {
+ int i, j, n, a[20][20], visit[20] = {0};
+
+ printf("Enter the number of vertices:\n");
+ scanf("%d", &n);
+
+ if (n > 20) {
+ printf("Graph size exceeds maximum allowed (20).\n");
+ return 1;
+ }
+
+ printf("Enter adjacency matrix:\n");
+ for (i = 1; i <= n; i++) {
+ for (j = 1; j <= n; j++) {
+ scanf("%d", &a[i][j]);
+ }
+ }
+
+ printf("BFS traversal:\n");
+ BFS(n, a, visit);
+
+ return 0;
+}
+OUTPUT:
+
+Enter the number of vertices: 4
+Enter the source vertex: 3
+Enter the adjacency matrix:
+0 1 0 0
+0 0 1 0
+0 0 0 1
+0 0 0 0
+Vertex 3 is reachable from 3
+Vertex 4 is reachable from 3
+
+5. Design, Develop and Implement C Programs to solve Topological Sorting using Decrease and Conquer technique. 
+ #include 
+
+int n, adj[20][20], visited[20], order[20], idx= 0;
+
+void dfs(int v) {
+ visited[v] = 1;
+ for (int i = 1; i <= n; i++) {
+ if (adj[v][i] == 1 && !visited[i]) {
+ dfs(i);
+ }
+ }
+ order[++idx] = v;
+}
+
+int main() {
+ int edges, u, v;
+
+ printf("Enter number of nodes: ");
+ scanf("%d", &n);
+
+ printf("Enter number of edges: ");
+ scanf("%d", &edges);
+
+ // Initialize adjacency matrix
+ for (int i = 1; i <= n; i++)
+ for (int j = 1; j <= n; j++)
+ adj[i][j] = 0;
+
+ printf("Enter edges (from to):\n");
+ for (int i = 0; i < edges; i++) {
+ scanf("%d%d", &u, &v);
+ adj[u][v] = 1;
+ }
+
+ // Run DFS for all unvisited nodes
+ for (int i = 1; i <= n; i++) {
+ if (!visited[i])
+ dfs(i);
+ }
+
+ // Print topological order
+ printf("Topological Sort:\n");
+ for (int i = idx; i >= 1; i--) {
+ printf("%d ", order[i]);
+ }
+ printf("\n");
+
+ return 0;
+}
+
+OUTPUT:
+
+enter no of vertices: 4
+enter the adjacency matrix:
+0 1 0 0
+0 0 1 0
+0 0 0 1
+0 0 0 0
+array after sorting is: 1 2 3 4
+
+6. Design, Develop and Implement C Programs to solve Horspoolâ€™s algorithm using Space and time tradeoff technique
+#include 
+#include 
+
+#define MAX 256 // Size of ASCII table
+
+int table[MAX]; // Shift table
+
+// Function to create the shift table for Horspool algorithm
+void shifttable(char p[], int m) {
+ int i;
+
+ // Set all shifts to the pattern length by default
+ for (i = 0; i < MAX; i++) {
+ table[i] = m;
+ }
+
+ // Set actual shifts based on pattern characters
+ for (i = 0; i < m - 1; i++) {
+ table[(unsigned char)p[i]] = m - 1 - i;
+ }
+}
+
+// Horspool's string matching algorithm
+int horspool(char T[], int n, char p[], int m) {
+ int i = m - 1;
+ int k;
+
+ shifttable(p, m); // Build the shift table
+
+ while (i < n) {
+ k = 0;
+ while (k < m && p[m - 1 - k] == T[i - k]) {
+ k++;
+ }
+
+ if (k == m) {
+ return i - m + 1; // Match found
+ } else {
+ i += table[(unsigned char)T[i]]; // Shift
+ }
+ }
+
+ return -1; // No match found
+}
+
+// Main function
+int main() {
+ char T[100], p[50]; // T = Text, p = Pattern
+ int pos;
+
+ printf("Enter the text: ");
+ scanf("%s", T);
+
+ printf("Enter the pattern: ");
+ scanf("%s", p);
+
+ int n = strlen(T);
+ int m = strlen(p);
+
+ pos = horspool(T, n, p, m);
+
+ if (pos == -1) {
+ printf("No pattern found.\n");
+ } else {
+ printf("Pattern found at position %d\n", pos);
+ }
+
+ return 0;
+}
+
+OUTPUT:
+enter the text string: QWERTYUIOP
+enter the pattern: TYU
+Pattern found in position 5
+
+. 7. Design, Develop and Implement C Programs to solve Heap Sorting using Transform and Conquer technique.
+#include 
+
+void heapify\_bottomup(int H[20], int n, int i) {
+ int largest = i;
+ int left = 2 * i;
+ int right = 2 * i + 1;
+
+ if (left <= n && H[left] > H[largest])
+ largest = left;
+
+ if (right <= n && H[right] > H[largest])
+ largest = right;
+
+ if (largest != i) {
+ int temp = H[i];
+ H[i] = H[largest];
+ H[largest] = temp;
+ heapify\_bottomup(H, n, largest);
+ }
+}
+
+void heapsort(int H[20], int n) {
+ int i, temp;
+
+ for (i = n / 2; i >= 1; i--) {
+ heapify\_bottomup(H, n, i);
+ }
+
+ for (i = n; i >= 2; i--) {
+ temp = H[1];
+ H[1] = H[i];
+ H[i] = temp;
+ heapify\_bottomup(H, i - 1, 1);
+ }
+}
+
+int main() {
+ int H[20], i, n;
+
+ printf("Enter the number of elements: ");
+ scanf("%d", &n);
+
+ printf("Enter the elements one by one:\n");
+ for (i = 1; i <= n; i++) {
+ scanf("%d", &H[i]);
+ }
+
+ heapsort(H, n);
+
+ printf("Sorted elements:\n");
+ for (i = 1; i <= n; i++) {
+ printf("%d ", H[i]);
+ }
+
+ return 0;
+}OUTPUT:
+Enter the value of n: 4
+Enter the elements: 5 2 3 1
+The sorted array is
+1 2 3 5
